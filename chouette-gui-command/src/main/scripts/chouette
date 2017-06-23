@@ -1,0 +1,11 @@
+#!/bin/bash -xe
+
+if [ "$1" == "-classpath" ]; then
+    OPTIONS="-Xbootclasspath/p:$2"
+    shift 2
+fi
+
+cd `dirname $0`
+# Use the highest version 
+jar_name=`/bin/ls -r chouette-gui-command-* 2> /dev/null | head -1`
+java $OPTIONS -Xmx800M -jar $jar_name $*
